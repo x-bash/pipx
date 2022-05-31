@@ -1,0 +1,11 @@
+# Author:       Li Junhao       l@x-cmd.com
+# shellcheck    shell=sh        disable=SC3043,SC2164,SC1091     # xrc
+
+___x_cmd_pipx(){
+    :
+}
+
+___x_cmd___pipx_origin(){
+    x pkg install pipx && x pkg xbin init ucloud ___x_cmd___pipx_origin || return
+    ___x_cmd___pipx_origin "$@"
+}
