@@ -6,7 +6,7 @@ ___x_cmd_pipx(){
 }
 
 if ! command -v pipx; then
-    x env try python=latest || exit
+    x env try python || exit
     command -v pipx || pip install pipx || exit
 fi
 
