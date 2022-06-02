@@ -10,6 +10,8 @@ ___x_cmd_pipx(){
 if ! command -v pipx; then
     x env try python || exit
     command -v pipx || pip install pipx || exit
+    x path add_existed_folder "$HOME/.local/bin"
+    x path add_existed_folder "$HOME/.local/pipx"
 fi
 
 ___x_cmd___pipx_origin(){
@@ -43,3 +45,4 @@ ___x_cmd___pipx_exec_2(){
     ___x_cmd___pipx_origin "$name" "$@"
 }
 
+xrc setmain ___x_cmd_pipx
