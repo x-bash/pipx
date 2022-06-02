@@ -9,7 +9,7 @@ ___x_cmd_pipx(){
 
 if ! command -v pipx; then
     x env try python || exit
-    command -v pipx || pip install pipx || exit
+    command -v pipx > /dev/null || pip install pipx || exit
 fi
 
 ___x_cmd___pipx_origin(){
@@ -17,15 +17,17 @@ ___x_cmd___pipx_origin(){
 }
 
 ___x_cmd___pipx_exec(){
-    local name="$1"; shift
+    local op="$1"
+    local name="$2"; shift 2
     case "$name" in
-        -*)     ___x_cmd___pipx_origin "$name" "$@" ;;
-        *)      ___x_cmd___pipx_exec_2 "$name" "$@"
+        -*)     ___x_cmd___pipx_origin "$op" "${name#-}" "$@" ;;
+        *)      ___x_cmd___pipx_exec_2 "$op" "$name" "$@" ;;
     esac
 }
 
 ___x_cmd___pipx_exec_2(){
-    local name="${1:?Please provide name}"; shift
+    local op="${1:?Please provide op}"
+    local name="${2:?Please provide name}"; shift 2
 
     # if [ -f "$HOME/.local/pipx/"$name/pipx_metadata.json ]; then
     #     # json find out __Path__
@@ -40,6 +42,6 @@ ___x_cmd___pipx_exec_2(){
         return
     fi
 
-    ___x_cmd___pipx_origin "$name" "$@"
+    ___x_cmd___pipx_origin "$op" "$name" "$@"
 }
 
