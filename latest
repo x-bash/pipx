@@ -45,16 +45,12 @@ ___x_cmd___pipx_exec_2(){
     #     fi
     # fi
 
-    if [ ! -x "$HOME/.local/pipx/venvs/${name}/bin/${name}" ]; then
-        ___x_cmd___pipx_origin install "$name"
-    fi
-
     if [ -x "$HOME/.local/pipx/venvs/${name}/bin/${name}" ]; then
         "$HOME/.local/pipx/venvs/${name}/bin/${name}" "$@"
         return
     fi
 
-    ___x_cmd___pipx_origin "$name" "$@"
+    ___x_cmd___pipx_origin run "$name" "$@"
 }
 
 xrc setmain ___x_cmd_pipx
