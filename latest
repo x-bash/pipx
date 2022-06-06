@@ -3,7 +3,6 @@
 
 ___x_cmd_pipx(){
     # ___x_cmd___pipx_origin "$@"
-    # ___x_cmd___pipx_exec "$@"
     case "$1" in
         _x_cmd_advise_json)       printf "{}";;
         *)                        ___x_cmd___pipx_exec "$@" ;;
