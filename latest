@@ -2,16 +2,18 @@
 # shellcheck    shell=sh        disable=SC3043,SC2164,SC1091     # xrc
 
 ___x_cmd_pipx(){
-    ___x_cmd___pipx_origin "$@"
+    # ___x_cmd___pipx_origin "$@"
     # ___x_cmd___pipx_exec "$@"
+    case "$1" in
+        _x_cmd_advise_json)       printf "{}";;
+        *)                        ___x_cmd___pipx_exec "$@" ;;
+    esac
 }
 
 
-if ! command -v pipx; then
+if ! command -v pipx > /dev/null; then
     x env try python || exit
-    command -v pipx || pip install pipx || exit
-    x path add_existed_folder "$HOME/.local/bin"
-    x path add_existed_folder "$HOME/.local/pipx"
+    command -v pipx  || pip install pipx || exit
 fi
 
 ___x_cmd___pipx_origin(){
