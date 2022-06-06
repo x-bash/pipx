@@ -11,7 +11,7 @@ ___x_cmd_pipx(){
 
 if ! command -v pipx > /dev/null; then
     x env try python || exit
-    command -v pipx  || pip install pipx || exit
+    command -v pipx > /dev/null || pip install pipx || exit
 fi
 
 ___x_cmd___pipx_origin(){
